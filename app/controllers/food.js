@@ -1,7 +1,12 @@
+import { Menu } from "../models/Menu.js";
 import { MonAn } from "../models/MonAn.js"
 
+// Thay vì sử dụng mảng gay ảnh hưởng đến hiển thị ở trong food-list
+// làm cho trang foodlist chỉ hiển thị một món mới nhất khi thêm món mới
+// let arrMonAn = []
 
-let arrMonAn = []
+let menu = new Menu
+menu.layStorage();
 
 document.querySelector('#btnThemMon').onclick = () => {
 
@@ -53,7 +58,13 @@ document.querySelector('#btnThemMon').onclick = () => {
 
 
     // Thêm món ăn
-    arrMonAn.push(monAn);
+
+    // Cách 1: viết theo hàm
+    // menu.arrMonAn.push(monAn);
+
+    // cách 2: viết theo đối tượng
+    menu.themMon(monAn);
+    menu.luuStorage();
     localStorage.setItem('danhSachMonAn', JSON.stringify(arrMonAn))
 
 }
