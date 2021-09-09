@@ -8,15 +8,30 @@ import { MonAn } from "../models/MonAn.js";
 // Sẽ thay bằng chưa trong đối tượng
 let menu = new Menu();
 
-
+// ##01.Lấy dữ liệu đã lưu vào localstore
 let getDataStorage = () => {
     if (localStorage.getItem('danhSachMonAn')) {
         menu.arrMonAn = JSON.parse(localStorage.getItem('danhSachMonAn'))
     }
 }
-
 getDataStorage();
+
+// ##02. Đưa dữ liệu từ localstore lên giao diện
 menu.renderMenu("tbodyFood")
+
+
+/*
+Tai sao sử dụng window.xoaMonAn() ?
+
+01. Vì dữ liệu động nên không thể DOM băng id. 
+
+02. Vì cũng không DOM bằng class vì cần chạy thêm vòng lặp để kiểm tra maMon của món ăn cần xóa
+
+03. window bao hàm các toàn bộ document nên có thể gọi bất kỳ lúc nào
+*/
+
+let classbtn = document.querySelectorAll(".xoa")
+console.log({classbtn})
 
 window.xoaMonAn = function (maMon) {
     menu.xoaMonAn(maMon);
@@ -25,7 +40,7 @@ window.xoaMonAn = function (maMon) {
 }
 
 window.chinhSuaMonAn = function (maMon) {
-    // Trò hàm này xử lí load thông tin của món lên giao diện
+    // Cho hàm này xử lí load thông tin của món lên giao diện
     let monAn = menu.layThongTinMonAn(maMon);
     if (monAn) {
         // Load dữ liệu lên popup
@@ -46,14 +61,13 @@ document.querySelector('#btnCapNhat').onclick = () => {
     for (let input of arrInput) {
         let name = input.getAttribute('name');
         let value = input.value;
-
         monAnCapnhat[name] = value;
     }
 
     menu.capNhatMonAn(monAnCapnhat.maMon, monAnCapnhat);
     menu.renderMenu("tbodyFood");
 
-    // Tắt popup khi cập nhật
+    // Tắt popup và lưu vaog localstore
     document.querySelector('.btn-secondary').click();
     menu.luuStorage()
 }

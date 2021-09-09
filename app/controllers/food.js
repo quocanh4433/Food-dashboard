@@ -21,8 +21,6 @@ document.querySelector('#btnThemMon').onclick = () => {
         // monAn = { ... monAn, [name]:value}
     }
 
-
-
     // //--------------------------------------------------
     // // CÁCH 1: dùng queryslector + name
     // // -------------------------------------------------
@@ -66,7 +64,6 @@ document.querySelector('#btnThemMon').onclick = () => {
     menu.themMon(monAn);
     menu.luuStorage();
     localStorage.setItem('danhSachMonAn', JSON.stringify(arrMonAn))
-
 }
 
 // let sinhvien = {ma: 1, ten: "Nguyen"}

@@ -61,7 +61,7 @@ export class Menu {
                     <td>Giá khuyến mãi</td>
                     <td>${monAn.tinhTrang == 0 ? 'Hết' : 'Còn'}</td>
                     <td>
-                        <button class="btn btn-success" onclick="xoaMonAn(${monAn.maMon})">Xóa</button>
+                        <button class="btn btn-success xoa"  onclick="xoaMonAn(${monAn.maMon})">Xóa</button>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="chinhSuaMonAn(${monAn.maMon})">Chỉnh sửa</button>
                     </td>
                 </tr>
